@@ -1,3 +1,11 @@
+mmpi <- read_delim(input$file1$datapath, 
+                         "\t", escape_double = FALSE, trim_ws = TRUE)
+mmpi <- rename_all(mmpi,list(~str_replace(.,"dimension.","")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,".norm","")))
+
+terse <- input$terse
+
+
 res <- sapply(
   mmpi.dims.no,
   function(X){

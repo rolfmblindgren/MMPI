@@ -44,7 +44,6 @@ server <- function(input, output) {
       paste("data-", Sys.Date(), ".txt", sep = "")
     },
     content = function(file) {
-      terse <- input$terse
 
       source("process.R",local=TRUE)
 
@@ -67,14 +66,6 @@ server <- function(input, output) {
   output$table <- DT::renderDataTable({
     if ( is.character(input$file1$datapath)
                       && file_ext(input$file1$datapath)=="csv") {
-
-      mmpi <- read_delim(input$file1$datapath, 
-                         "\t", escape_double = FALSE, trim_ws = TRUE)
-
-      mmpi <- rename_all(mmpi,list(~str_replace(.,"dimension.","")))
-      mmpi <- rename_all(mmpi,list(~str_replace(.,".norm","")))
-
-      terse <- input$terse
       
       source("process.R",local=TRUE)
       
