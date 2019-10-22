@@ -62,7 +62,6 @@ server <- function(input, output) {
 #    }
 #  )
 
-  
   output$table <- DT::renderDataTable({
     if ( is.character(input$file1$datapath)
                       && file_ext(input$file1$datapath)=="csv") {
