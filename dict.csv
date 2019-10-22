@@ -1,4 +1,8 @@
 ~Dato,Date
+~Testdato,Testdate
+~Fødselsdato,Birth date
+~Kjønn k,Gender f
+~Kjønn m,Gender m
 Utgave,Edition
 Oversikt,Overview
 Innhold,Contents
@@ -74,7 +78,7 @@ DISC-r Hemningsløshet,DISC-r Disconstraint–Revised
 NEGE-r Negativ emosjonalitet/nevrotisisme,NEGE-r Negative Emotionality/Neuroticism–Revised 
 INTR-r Introversjon lav positiv emosjonalitet,INTR-r Introversion/Low Positive Emotionality–Revised 
 Profil (numerisk),Profile (numeric)
-"Minnesota Multiphasic Personality Inventory-2 Restructured Form · Standard Norske normer, totalgruppe · T-skåre (50+10z)","Minnesota Multiphasic Personality Inventory-2 Restructured Form · Standard Norwegian norms, comprehensive group · T-scores (50+10z)"
+"Norske normer, totalgruppe · T-skåre (50+10z)","Norwegian norms, comprehensive group · T-scores (50+10z)"
 Skala,Scale
 Råskåre,Raw Score
 Skalert,Scaled
@@ -89,4 +93,3 @@ Felttittel,Title of Field
 feltinnhold,Conents of Field
 "Skype, evt. telefon","Skype or telefpone number"
 Dette egne feltet er tomt,This custom field is empty
- 
