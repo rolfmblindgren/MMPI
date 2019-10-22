@@ -1,9 +1,11 @@
 library(xml2)
 library(readr)
+options(warn=1)
 
                                         # setwd("~/prosjekter/R/MMPI")
 
-doc <- "~/prosjekter/adopsjonsforum/rapporter/2019/03/ANXM_38_MMPI-2-RF_201909151056.docx"
+doc <- c("~/prosjekter/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_201909151051.docx",
+         "~/prosjekter/adopsjonsforum/rapporter/2019/03/VNWV_38_NEO-PI-3_201909151050.docx")
 
                                         #xml_replace (
                                         #  
@@ -21,10 +23,12 @@ translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<do
   library(readr)
   library(tools)
 
+  print(1)
+  
   target <- tempdir()
   
   if ( is.character(.dict) && file.exists(.dict) ) {
-    dict <- read_csv("dict.csv",col_names=F)
+    dict <- read_csv(.dict,col_names=F)
   } else if (is.vector(.dict)) {
     .dict = tibble(matrix(.dict,ncol=2))
   } else {
@@ -37,53 +41,107 @@ translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<do
     stop ("doc must be path to document")
   }
 
-  
   destination <- paste0(file_path_sans_ext(.doc),"-EN.docx") 
-  
-  body <- read_xml(paste0(target,"/word/",.xmlfile))
 
-  res <- apply(
-    data.frame(dict),
-    1,
-    function(X){
-      needle   <- X[[1]]
-      haystack <- X[[2]]
+  sapply(.xmlfile,function(.xmlfile){
 
-      if ( substring(needle,1,1) == "~" ) {
-        needle <- substring(needle,2)
-        fra <-  (xml_find_all(body,paste0(".//w:t[contains(text(),'", needle, "')]")))
+    
+    body <- read_xml(paste0(target,"/word/",.xmlfile))
+    
+    tabs <-  xml_find_all(body,'.//w:ind[contains(@w:right,1974)]')
+    if (length(tabs)>0) {
+      
+      fra <- tabs[[1]]
+      til <- xml_child(read_xml(paste0(.docspec[1],'<w:ind w:left="6514" w:right="1372" w:firstLine="0"/>',.docspec[2])))
+      xml_replace(fra, til)
+    }
 
-        if ( needle == "Dato" ) {
-          haystack <- paste0()
+
+    tabs <-  xml_find_all(body,'.//w:ind[contains(@w:right,2366)]')
+    if (length(tabs)>0) {
+      
+      fra <- tabs[[1]]
+      til <- xml_child(read_xml(paste0(.docspec[1],'<w:ind w:left="6514" w:right="1372" w:firstLine="0"/>',.docspec[2])))
+      xml_replace(fra, til)
+      
+    }
+
+    res <- apply(
+      data.frame(dict),
+      1,
+      function(X){
+        needle   <- X[[1]]
+        haystack <- X[[2]]
+
+        if ( nchar(needle) > 1 && substring(needle,1,1) == "~" ) {
+
+          needle <- substring(needle,2)
+          fra <-  xml_find_all(body,paste0(".//w:t[contains(text(),'", needle, "')]"))
+          
+          haystack <- gsub(needle,haystack,xml_text(fra))
+          
+        } else {
+          fra <- (xml_find_all(body,paste0(".//w:t[text()='", needle, "']")))
         }
 
-        
-
-        
-      } else {
-
-        
-        fra <- (xml_find_all(body,paste0(".//w:t[text()='", needle, "']")))
-        til <- xml_child(read_xml(paste0(.docspec[1],paste0("<w:t>", haystack,  "</w:t>"),.docspec[2])))
+        til <- xml_child(read_xml(paste0(.docspec[1],"<w:t>", haystack,  "</w:t>",.docspec[2])))
 
         for  (f in fra) {
           xml_replace(f, til)
         }
-      }
-    }
-  )
 
-  write_xml(body,paste0(target,"/word/",.xmlfile))
-  print(target)
+
+        bm <-  xml_find_all(body,paste0('.//w:bookmarkStart[@w:name="',needle,'"]'))
+
+        if (length(bm)>0){
+          
+          print(bm)
+          print(needle)
+          
+          bm.id <- xml_attrs(bm)[[1]]["id"]
+          bm.name <-  xml_attrs(bm)[[1]]["name"]
+          
+          if ( needle == bm.name ) {
+            bm.til <- xml_child(read_xml(paste0(
+              .docspec[1],
+              '<w:bookmarkStart w:name="', haystack ,'" w:id="', bm.id ,'"/>',
+              .docspec[2])))
+            xml_replace(bm[[1]],bm.til)
+            
+          }
+        }
+      }
+      
+    )
+
+    write_xml(body,paste0(target,"/word/",.xmlfile))
+
+  })
 
   currdir <- getwd()
-  setwd(target)
   
-  zip(paste0(destination),files=".",flags="-r9X")
+  if ( (images <- regexpr("MMPI|NEO-PI",.doc))[1] > 0 ) {
 
+    thefilesdir <- paste0("./media/", substr(.doc,images[1],images[1]+attr(images,"match.length")-1))
+    thefiles <- list.files(thefilesdir,
+                           full.names=TRUE)
+    
+    print(thefilesdir)
+    
+    mediadir <- paste0(target,"/media")
+    
+    sapply(thefiles,function(X){
+                                        #print(X)
+      file.copy(X,
+                mediadir,overwrite=TRUE)
+    })
+  }
+  
+  setwd(target)
+  zip(paste0(destination),files=".",flags="-r9X")
   setwd(currdir)
 
+  print(target)
 }
 
-translate_doc(doc,"dict.csv")
-
+translate_doc(doc[1],"neo-pidict.csv",c("document.xml","header3.xml","footer1.xml"))
