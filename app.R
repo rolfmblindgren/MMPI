@@ -68,8 +68,7 @@ server <- function(input, output) {
       
       source("process.R",local=TRUE)
       
-      mmpi <- DT::datatable(res)
-             
+      mmpi <- DT::datatable(res)             
       
     } else {
       NULL

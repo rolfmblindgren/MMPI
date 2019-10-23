@@ -5,12 +5,11 @@ mmpi <- rename_all(mmpi,list(~str_replace(.,".norm","")))
 
 terse <- input$terse
 
-
 res <- sapply(
-  mmpi.dims.no,
+  mmpi.dims,
   function(X){
     d <- t(mmpi[X])
-    ret <- switch(which(mmpi.dims.no==X),
+    ret <- switch(which(mmpi.dims==X),
                   "Name"
                   =
                   d
@@ -271,13 +270,13 @@ res <- sapply(
                   =
                   sapply(d,function(X){
                     if ( X >= 80 ) {
-                      "Client reports episodes of heightened excitement and energy level, uncontrollable mood swings, and lack of sleep."
-                    } else if ( X >= 65 ) {
-                      "Client reports episodes of heightened excitement and energy level."
+                      "Client reports being unassertive and submissive, not liking to be in charge, failing to stand up for himself or herself, and being ready to give in to others."
+                    } else if ( X >= 65 && X <= 69) {
+                      "Client reports being unassertive."
                     } else if (X >= 39)  {
                       ""
                     } else {
-                      "Client reports a below-average level of energy and activation."
+                      "Client describes himself or herself as having strong opinions, standing up for himself or herself, being assertive and direct, and/or being able to lead others."
                       }
                   })
 
@@ -291,12 +290,14 @@ res <- sapply(
 
 )
 
-mmpi.dims <- which(sapply(res,is.null))
+mmpi.dims.active <- which(sapply(res,is.null))
+
+print(mmpi.dims.active)
 
 df <- data.frame(matrix(unlist(res),ncol=length(unlist(res))/2),stringsAsFactors=FALSE)
 
 
-colnames(df) <- mmpi.dims.no[-mmpi.dims]
+colnames(df) <- mmpi.dims[-mmpi.dims.active]
 
 names <- df[["Name"]]
 
