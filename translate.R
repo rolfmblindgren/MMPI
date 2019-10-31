@@ -7,6 +7,9 @@ options(warn=1)
 doc <- c("~/prosjekter/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_201909151051.docx",
          "~/prosjekter/adopsjonsforum/rapporter/2019/03/VNWV_38_NEO-PI-3_201909151050.docx")
 
+doc <- c("C:/Users/rolf/Jottacloud/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_201909151051.docx",
+         "C:/Users/rolf/Jottacloud/adopsjonsforum/rapporter/2019/03/VNWV_38_NEO-PI-3_201909151050.docx")
+
                                         #xml_replace (
                                         #  
                                         #(xml_find_all(xmlmail,".//w:t[text()='" . fra  .  "']"))[[1]],
@@ -18,7 +21,7 @@ doc <- c("~/prosjekter/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_2019091
 
 ### main doc
 
-translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<document space="preserve" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">', '</document>')) {
+.translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<document space="preserve" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">', '</document>')) {
   library(xml2)
   library(readr)
   library(tools)
@@ -128,12 +131,16 @@ translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<do
     
     print(thefilesdir)
     
-    mediadir <- paste0(target,"/media")
+    mediadir <- paste0(target,"/word/media/")
     
     sapply(thefiles,function(X){
-                                        #print(X)
+      dest <- paste0(mediadir,basename(X))
+      print("Copy to mediadir")
+      print(X)
+      print(dest)
       file.copy(X,
-                mediadir,overwrite=TRUE)
+                dest,overwrite=TRUE)
+      print("Copied to mediadir")
     })
   }
   
@@ -144,4 +151,12 @@ translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<do
   print(target)
 }
 
-translate_doc(doc[1],"neo-pidict.csv",c("document.xml","header3.xml","footer1.xml"))
+translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<document space="preserve" xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">', '</document>')) {
+  print(.doc)
+  sapply(.doc,function(X){
+    print(X)
+    .translate_doc(X,.dict,.xmlfile,.docspec)})
+  
+}
+
+translate_doc(doc,"neo-pidict.csv",c("document.xml","header3.xml","footer1.xml"))
