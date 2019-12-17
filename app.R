@@ -66,7 +66,6 @@ server <- function(input, output) {
     if ( is.character(input$file1$datapath)
                       && file_ext(input$file1$datapath)=="csv") {
 
-      print(res)
       source("process.R",local=TRUE)
       
       mmpi <- DT::datatable(res)             
