@@ -10,7 +10,9 @@ library(tools)
 library(xtable)
 
 mmpi.dims.no <- list(
+
   name = c("Name"),
+
   validity = c("VRIN-r",
                "TRIN-r",
                "F-r",
@@ -35,7 +37,7 @@ mmpi.dims.no <- list(
     ## "RC7",
     "RC8"
     ## "RC9"
-    ),
+  ),
   som = c(
     ## "UWS",
     ## "MAG",
@@ -54,7 +56,7 @@ mmpi.dims.no <- list(
     "VEP"
     ## BRF
     ## "MSP"
-    ),
+  ),
   ekst = c(
     ## "JVP",
     ## "SUB",
@@ -67,7 +69,7 @@ mmpi.dims.no <- list(
     ## "SMV",
     ## "SHY",
     ## "MIS"
-    ),
+  ),
   intr = c(
     ## "AES",
     ## "MEC"
