@@ -1,5 +1,9 @@
 mmpi <- read_delim(input$file1$datapath, 
-                         "\t", escape_double = FALSE, trim_ws = TRUE, col_names = input$header)
+                   "\t",
+                   escape_double = FALSE,
+                   trim_ws = TRUE,
+                   col_names = input$header)
+
 mmpi <- rename_all(mmpi,list(~str_replace(.,"dimension.","")))
 mmpi <- rename_all(mmpi,list(~str_replace(.,".norm","")))
 
@@ -262,7 +266,7 @@ res <- sapply(
                       ""
                     } else {
                       "Client reports a below-average level of energy and activation."
-                      }
+                    }
                   })
 
                  ,
@@ -277,7 +281,20 @@ res <- sapply(
                       ""
                     } else {
                       "Client describes himself or herself as having strong opinions, standing up for himself or herself, being assertive and direct, and/or being able to lead others."
-                      }
+                    }
+                  })
+
+                 ,
+                  "INTR-r"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports a lack of positive emotional experiences and a tendency to avoid social situations."
+                    } else if ( X <= 65 && X >= 39) {
+                      ""
+                    } else {
+                      "Client reports feeling energetic and having many emotionally positive experiences."
+                    }
                   })
 
                   )
@@ -294,10 +311,16 @@ mmpi.dims.active <- which(sapply(res,is.null))
 
 print(mmpi.dims.active)
 
-df <- data.frame(matrix(unlist(res),ncol=length(unlist(res))/2),stringsAsFactors=FALSE)
+df <- data.frame(
+  matrix(unlist(res),
+         ncol=length(unlist(res))/nrow(mmpi)),
+  stringsAsFactors=FALSE)
 
-
-colnames(df) <- mmpi.dims[-mmpi.dims.active]
+if ( terse ) {
+  colnames(df) <- mmpi.dims[-mmpi.dims.active]
+} else {
+  colnames(df) <- mmpi.dims
+}
 
 names <- df[["Name"]]
 
