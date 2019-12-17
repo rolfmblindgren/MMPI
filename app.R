@@ -8,7 +8,7 @@ ui <- dashboardPage(
     menuItem(tabName = "Translation", text = "The Document", icon = icon("file-word"))
   )),
   dashboardBody(
-    tabItems(
+    tabItems( 
       tabItem( 
         tabName="home", 
         fluidRow(
@@ -65,7 +65,8 @@ server <- function(input, output) {
   output$table <- DT::renderDataTable({
     if ( is.character(input$file1$datapath)
                       && file_ext(input$file1$datapath)=="csv") {
-      
+
+      print(res)
       source("process.R",local=TRUE)
       
       mmpi <- DT::datatable(res)             
