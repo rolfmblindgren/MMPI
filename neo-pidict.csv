@@ -17,33 +17,41 @@ Egne felt,Custom fields
 Kun psykologer eller sertifiserte brukere bør tolke testresultater. Vennligst respekter de retningslinjene som gjelder for de respektive yrkesforeningene.,The test results should be interpreted by psychologists or certified users only. Please comply with applicable guidlelines from professional associations.
 Testdato,Test date
 Fødselsdato,Date of Birth
-Dato,Date
 Kjønn k,Gender f
 Kjønn m,Gender m
 Kjønn,Gender
 m,m
 k,f
-Faktor,Factor
-Fasett,Facet
 Faktor Ekstroversjon,Factor Extroversion
+Faktor Ekstroversjon Fasetter Ekstroversjon,Factor Extroversion Facets Extroversion
 Fasetter Ekstroversjon,Facets Extroversion
 Faktor Åpenhet for erfaring,Factor Openness to experience
 Fasetter Åpenhet for erfaring,Facets Openness to experience
+Faktor Åpenhet for erfaring Fasetter Åpenhet for erfaring,Factor Openness to experience Facets openness to experience
 Faktor Planmessighet,Factor Conscientiousness
 Fasetter Planmessighet,Factor Conscientiousness
+Faktor Planmessighet Fasetter Planmessighet,Factor Conscientiousness Facets conscientiousness
 Faktor Omgjengelighet,Factor Agreeableness
 Fasetter Omgjengelighet,Facets Agreeableness
+Faktor Omgjengelighet Fasetter Omgjengelighet, Factor Agreeableness Facets Agreeableness
 Faktor Følelsesmessig instabilitet,Factor Neuroticism
 Fasetter Følelsesmessig instabilitet,Facets Neuroticism
+Faktor Følelsesmessig instabilitet Fasetter Følelsesmessig instabilitet,Factor Neuroticism Facets Neuroticism
+Faktor,Factor
+Fasett,Facet
+Faktorer,Factors
+Fasetter,Facets
 Engstelse Fiendtlighet Depresjon Selvbevissthet Impulsivitet,Anxiety Angry Hostility Depression Self‑Consciousness Impulsiveness
 Varme Sosiabilitet Selvmarkering Aktivitet Spenningssøking,Warmth Gregariousness Assertiveness Activity Excitement Seeking
 Fantasi Estetikk Følelser Handlinger Ideer,Fantasy Aesthetics Feelings Actions Ideas
 Tillit Rettfremhet Altruisme Føyelighet Beskjedenhet,Trust Straightforwardness Altruism Compliance Modesty
-Kompetanse ,Competence
+Kompetanse ,Competence 
+~Kompetanse,Competence
 Orden Plikttroskap,Order Dutifulness
 Prestasjonsstreben ,Achievement Striving
-Selvdisiplin, Self-Discipline
-Betenksomhet, Deliberation
+~Prestasjonsstreben,Achievement Striving
+Selvdisiplin,Self-Discipline
+Betenksomhet,Deliberation
 Ekstroversjon,Extroversion
 Varme,Warmth
 Sosiabilitet,Gregariousness
@@ -83,6 +91,10 @@ T-skåre,T-Score
 Råskåre,Raw score
 Skalert skåre,Scaled score
 Skala,Scale
+"NEO-PI Personality Inventory 3 | Standard Normalnorm, kvinner - T-skåre (50+10z)","NEO-PI Personality Inventory 3 | Standard Gender specific norm, women - T-score (50+10z)"
+"NEO-PI Personality Inventory 3 | Standard Normalnorm, menn - T-skåre (50+10z)","NEO-PI Personality Inventory 3 | Standard Gender specific norm, men - T-score (50+10z)"
 ~Testdato,Test date
 ~Fødselsdato,Birth date
+~Dato,Date
 Tittel,Title
+EGNE FELT,CUSTOM FIELDS
