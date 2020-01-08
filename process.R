@@ -290,7 +290,7 @@ res <- sapply(
                   "AERG"
                   =
                   sapply(d,function(X){
-                    if ( X = 80 ) {
+                    if ( X == 80 ) {
                       "Client reports getting upset easily, being impatient with others, becoming easily angered, and being sometimes overcome by anger."
                     } else if ( X >= 65 ) {
                       "Client reports being anger prone."
