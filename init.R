@@ -28,13 +28,13 @@ mmpi.dims.no <- list(
     ## "HOE"
   ),
   rcs = c(
-    ## "RCd",
+    "RCd",
     "RC1",
     "RC2",
     ## "RC3",
     ## "RC4",
     ## "RC6",
-    ## "RC7",
+    "RC7",
     "RC8"
     ## "RC9"
   ),
@@ -50,33 +50,32 @@ mmpi.dims.no <- list(
     "HLP",
     ## "SZW",
     ## "INE",
-    ## "STR",
+    "STR",
     "ANGST",
-    ## "AERG",
+    "AERG",
     "VEP"
-    ## BRF
     ## "MSP"
   ),
   ekst = c(
-    ## "JVP",
+    "JVP",
     ## "SUB",
-    ## "AGG",
+    "AGG",
     "AKT"
   ),
   intp = c(
-    ## "FML",
+    "FML",
     "IPP"
     ## "SMV",
     ## "SHY",
-    ## "MIS"
+    "MIS"
   ),
   intr = c(
     ## "AES",
-    ## "MEC"
+    ##  "MEC"
   ),
   pers = c(
-    ## "AGGR-r",
-    ## "PSYC-r",
+    "AGGR-r",
+    "PSYC-r",
     ## "DISC-r",
     ## "NEGE-r",
     "INTR-r"
