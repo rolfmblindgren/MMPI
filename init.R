@@ -64,7 +64,7 @@ mmpi.dims.no <- list(
   ),
   intp = c(
     "FML",
-    "IPP"
+    "IPP",
     ## "SMV",
     ## "SHY",
     "MIS"
