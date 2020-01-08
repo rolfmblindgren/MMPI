@@ -158,6 +158,20 @@ res <- sapply(
                   })
 
                  ,
+                  "RCd"
+                  =
+                  sapply(d,function(X){
+                    
+                    if ( X >= 80 ) {
+                      "Client’s responses indicate he or she is experiencing considerable emotional turmoil, is feeling overwhelmed, and is extremely unhappy, sad, and dissatisfied with his or her life."
+                      } else if ( X >= 65 ) {
+                      "Client reports being sad and unhappy and being dissatisfied with his or her current life circumstances.."
+                      } else if ( X >= 39 ) { "" } else {
+                      "Client reports a higher-than-average level of morale and life satisfaction. "
+                      } })
+
+                  
+                 ,
                   "RC1"
                   =
                   sapply(d,function(X){
@@ -186,6 +200,20 @@ res <- sapply(
                       ""
                     } else {
                       "Client reports better-than average level of emotional adjustment."
+                    }
+                  })
+
+
+                 ,
+                  "RC7"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports various negative emotional experiences, including anxiety, anger, and fear."
+                    } else if ( X >= 40 ) {
+                      ""
+                    } else {
+                      "Client reports a below-average level of negative emotional experience. "
                     }
                   })
 
@@ -227,6 +255,23 @@ res <- sapply(
                       ""
                     }
                   })
+
+
+                 ,
+                  "STR"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "worry, including preoccupation with disappointments, difficulties with time pressure, and specific worries about misfortune and finances."
+                    } else if ( X >= 65 ) {
+                      "Client reports an above-average level of stress and worry."
+                    } else if ( X < 39 ) {
+                      "Client reports a below-average level of stress and worry."
+                    } else {
+                      ""
+                      }
+                  })
+
                   
                  ,
                   "ANGST"
@@ -242,6 +287,19 @@ res <- sapply(
                   })
 
                  ,
+                  "AERG"
+                  =
+                  sapply(d,function(X){
+                    if ( X = 80 ) {
+                      "Client reports getting upset easily, being impatient with others, becoming easily angered, and being sometimes overcome by anger."
+                    } else if ( X >= 65 ) {
+                      "Client reports being anger prone."
+                    } else {
+                      ""
+                    }
+                  })
+                 
+                 ,
                   "VEP"
                   =
                   sapply(d,function(X){
@@ -254,6 +312,37 @@ res <- sapply(
                     }
                   })
 
+
+                 ,
+                  "JVP"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "Client reports a history of juvenile conduct problems such as problematic behavior at school, stealing, and being influenced negatively by peers."
+                    } else if ( X >= 65 ) {
+                      "Client reports a history of problematic behavior at school."
+                    } else {
+                      ""
+                    }
+                  })
+
+
+                 ,
+                  "AGG"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "Client reports engaging in physically aggressive, violent behavior, including explosive behavior and physical altercations, and enjoying intimidating others."
+                    } else if ( X >= 65 ) {
+                      "Client reports engaging in physically aggressive, violent behavior and losing control."
+                    } else if (X >= 39)  {
+                      ""
+                    } else {
+                      "Client reports a below-average level of aggressive behavior."
+                    }
+                  })
+
+                  
                  ,
                   "AKT"
                   =
@@ -269,6 +358,23 @@ res <- sapply(
                     }
                   })
 
+
+                                   ,
+                  "FML"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "Client reports conflictual family relationships and lack of support from family members. Negative family attitudes and experiences include having frequent quarrels, disliking family members, feeling unappreciated by family members, and feeling that family members cannot be counted on in times of need."
+                    } else if ( X >= 65) {
+                      "Client reports conflictual family relationships and lack of support from family members."
+                    } else if (X >= 39)  {
+                      ""
+                    } else {
+                      "Client reports a relatively conflict-free past and current family environment."
+                    }
+                  })
+
+
                  ,
                   "IPP"
                   =
@@ -281,6 +387,51 @@ res <- sapply(
                       ""
                     } else {
                       "Client describes himself or herself as having strong opinions, standing up for himself or herself, being assertive and direct, and/or being able to lead others."
+                    }
+                  })
+
+
+                 ,
+                  "MIS"
+                  =
+                  sapply(d,function(X){
+                    if ( X == 100 ) {
+                      "Client reports disliking people and being around them, preferring to be alone and never having had a close relationship.
+
+McCord, David M.. Assessment Using the MMPI–2–RF (Psychological Assessment Series) . American Psychological Association. Kindle Edition. "
+                    } else if ( X >= 80) {
+                      "Client reports disliking people and being around them, preferring to be alone."
+                    } else if (X >= 65)  {
+                      "Client reports disliking people and being around them."
+                    } else {
+                      ""
+                    }
+                  })
+
+                 ,
+                  "AGGR-r"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports being interpersonally aggressive and assertive."
+                    } else if ( X >= 39) {
+                      ""
+                    } else {
+                      "Client reports being interpersonally passive and submissive."
+                    }
+                  })
+
+
+                 ,
+                  "PSYC-r"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports various experiences associated with thought dysfunction."
+                    } else if ( X >= 39) {
+                      ""
+                    } else {
+                      "Client reports no experiences of thought disturbance."
                     }
                   })
 
