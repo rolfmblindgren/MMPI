@@ -4,11 +4,9 @@ options(warn=1)
 
                                         # setwd("~/prosjekter/R/MMPI")
 
-doc <- c("~/prosjekter/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_201909151051.docx",
-         "~/prosjekter/adopsjonsforum/rapporter/2019/03/VNWV_38_NEO-PI-3_201909151050.docx")
 
-doc <- c("C:/Users/rolf/Jottacloud/adopsjonsforum/rapporter/2019/03/LNXY_38_NEO-PI-3_201909151051.docx",
-         "C:/Users/rolf/Jottacloud/adopsjonsforum/rapporter/2019/03/VNWV_38_NEO-PI-3_201909151050.docx")
+
+
 
                                         #xml_replace (
                                         #  
@@ -159,4 +157,11 @@ translate_doc <- function (.doc, .dict, .xmlfile="document.xml", .docspec=c('<do
   
 }
 
-translate_doc(doc,"neo-pidict.csv",c("document.xml","header3.xml","footer1.xml"))
+mmpidocs <- list.files("~/prosjekter/adopsjonsforum/rapporter/2020/01",pattern="MMPI.*docx",full.names=TRUE)
+
+neopidocs <- list.files("~/prosjekter/adopsjonsforum/rapporter/2020/01",pattern="NEO-PI.*docx",full.names=TRUE)
+
+
+translate_doc(neopidocs,"neo-pidict.csv",c("document.xml","header3.xml","footer1.xml"))
+
+translate_doc(mmpidocs,"mmpidict.csv",c("document.xml","header3.xml","footer1.xml"))

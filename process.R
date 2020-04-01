@@ -164,11 +164,11 @@ res <- sapply(
                     
                     if ( X >= 80 ) {
                       "Client’s responses indicate he or she is experiencing considerable emotional turmoil, is feeling overwhelmed, and is extremely unhappy, sad, and dissatisfied with his or her life."
-                      } else if ( X >= 65 ) {
+                    } else if ( X >= 65 ) {
                       "Client reports being sad and unhappy and being dissatisfied with his or her current life circumstances.."
-                      } else if ( X >= 39 ) { "" } else {
-                      "Client reports a higher-than-average level of morale and life satisfaction. "
-                      } })
+                    } else if ( X >= 39 ) { "" } else {
+                                                 "Client reports a higher-than-average level of morale and life satisfaction. "
+                                               } })
 
                   
                  ,
@@ -269,7 +269,7 @@ res <- sapply(
                       "Client reports a below-average level of stress and worry."
                     } else {
                       ""
-                      }
+                    }
                   })
 
                   
@@ -298,7 +298,7 @@ res <- sapply(
                       ""
                     }
                   })
-                 
+                  
                  ,
                   "VEP"
                   =
@@ -359,7 +359,7 @@ res <- sapply(
                   })
 
 
-                                   ,
+                 ,
                   "FML"
                   =
                   sapply(d,function(X){
@@ -396,9 +396,7 @@ res <- sapply(
                   =
                   sapply(d,function(X){
                     if ( X == 100 ) {
-                      "Client reports disliking people and being around them, preferring to be alone and never having had a close relationship.
-
-McCord, David M.. Assessment Using the MMPI–2–RF (Psychological Assessment Series) . American Psychological Association. Kindle Edition. "
+                      "Client reports disliking people and being around them, preferring to be alone and never having had a close relationship."
                     } else if ( X >= 80) {
                       "Client reports disliking people and being around them, preferring to be alone."
                     } else if (X >= 65)  {
@@ -435,6 +433,20 @@ McCord, David M.. Assessment Using the MMPI–2–RF (Psychological Assessment S
                     }
                   })
 
+                 ,
+                  "DISC-r"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports various manifestations of disconstrained behavior"
+                    } else if ( X >= 39) {
+                      ""
+                    } else {
+                      "Client reports overly constrained behavior."
+                    }
+                  })
+
+                  
                  ,
                   "INTR-r"
                   =

@@ -76,7 +76,7 @@ mmpi.dims.no <- list(
   pers = c(
     "AGGR-r",
     "PSYC-r",
-    ## "DISC-r",
+    "DISC-r",
     ## "NEGE-r",
     "INTR-r"
   )
