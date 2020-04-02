@@ -23,20 +23,20 @@ mmpi.dims.no <- list(
                "L-r",
                "K-r"),
   hor = c(
-    ## "HOI",
-    ## "HOD",
-    ## "HOE"
+     "EID",
+     "THD",
+     "BXD"
   ),
   rcs = c(
     "RCd",
     "RC1",
     "RC2",
-    ## "RC3",
-    ## "RC4",
-    ## "RC6",
+    "RC3",
+    "RC4",
+    "RC6",
     "RC7",
-    "RC8"
-    ## "RC9"
+    "RC8",
+    "RC9"
   ),
   som = c(
     ## "UWS",
@@ -48,13 +48,13 @@ mmpi.dims.no <- list(
   int = c(
     "SUI",
     "HLP",
-    ## "SZW",
-    ## "INE",
-    "STR",
-    "ANGST",
-    "AERG",
-    "VEP"
-    ## "MSP"
+    ## "SFD"
+    "NFC",
+    "STW", # STR
+    "AXY", # ANGST
+    "ANP", #AERG
+    "BRF" # VEP
+    ## "MSP" -> "MSF"
   ),
   ekst = c(
     "JVP",
@@ -65,8 +65,8 @@ mmpi.dims.no <- list(
   intp = c(
     "FML",
     "IPP",
-    ## "SMV",
-    ## "SHY",
+    "SMV",
+    "SHY",
     "MIS"
   ),
   intr = c(
@@ -77,7 +77,7 @@ mmpi.dims.no <- list(
     "AGGR-r",
     "PSYC-r",
     "DISC-r",
-    ## "NEGE-r",
+    "NEGE-r",
     "INTR-r"
   )
 )

@@ -7,6 +7,23 @@ mmpi <- read_delim(input$file1$datapath,
 mmpi <- rename_all(mmpi,list(~str_replace(.,"dimension.","")))
 mmpi <- rename_all(mmpi,list(~str_replace(.,".norm","")))
 
+## hor
+mmpi <- rename_all(mmpi,list(~str_replace(.,"HOI","EID")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"HOD","THD")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"HOE","BXD")))
+
+## int
+mmpi <- rename_all(mmpi,list(~str_replace(.,"SZW","SFD")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"INE","NFC")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"STR","STW")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"ANGST","AXY")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"AERG","ANP")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"VEP","BRF")))
+mmpi <- rename_all(mmpi,list(~str_replace(.,"MSP","MSF")))
+
+print("MMPI")
+print(mmpi)
+
 terse <- input$terse
 
 res <- sapply(
@@ -17,28 +34,28 @@ res <- sapply(
                   "Name"
                   =
                   d
-
                  ,
+                  
                   "VRIN-r"
                   =
-                  sapply(d,
-                         function(X){
-                           if ( X >= 80) {
-                             "Protocol is invalid due to excessive variable response inconsistency."
-                           }
-                           else if (X >= 70) {
-                             "There is some evidence of variable response inconsistency."
-                           } else if (X >= 39) {
-                             ifelse ( terse,"","There is evidence of consistent responding.")
-                             
-                           } else if (X >= 30) {
-                             "There is evidence of remarkably consistent responding."
-                           } else {}
-                           
-                           
-                         })
-                  
+                  sapply(d,function(X){
+
+                    if ( X >= 80) {
+                      "Protocol is invalid due to excessive variable response inconsistency."
+                    }
+                    else if (X >= 70) {
+                      "There is some evidence of variable response inconsistency."
+                    } else if (X >= 39) {
+                      ifelse ( terse,"","There is evidence of consistent responding.")
+                      
+                    } else if (X >= 30) {
+                      "There is evidence of remarkably consistent responding."
+                    } else {}
+                    
+                    
+                  })
                  ,
+                  
                   "TRIN-r"
                   =
                   sapply(d,function(X){
@@ -53,6 +70,7 @@ res <- sapply(
                     
                   })
                  ,
+                  
                   "F-r"
                   =
                   sapply(d,function(X){
@@ -69,8 +87,8 @@ res <- sapply(
                       ifelse(terse,"", "There is no evidence of overreporting.")
                     }
                   })
-                  
                  ,
+                  
                   "Fp-r"
                   =
                   sapply(d,function(X){
@@ -158,6 +176,50 @@ res <- sapply(
                   })
 
                  ,
+                  "EID" #EID
+                  =
+                  sapply(d,function(X){
+                    
+                    if ( X >= 80 ) {
+                      "Client’s responses indicate considerable emotional distress that is likely to be perceived as a crisis."
+                    } else if ( X >= 65 ) {
+                      "Client’s responses indicate significant emotional distress."
+                    } else if ( X >= 39 ) { "" }
+                    else {
+                      "Client reports better-than-average level of emotional adjustment."
+                    } })
+
+
+                 ,
+                  "THD" #THD
+                  =
+                  sapply(d,function(X){
+                    
+                    if ( X >= 80 ) {
+                      "Client’s responses indicate serious thought dysfunction."
+                    } else if ( X >= 65 ) {
+                      "Client’s responses indicate significant thought dysfunction."
+                    } else {
+                      ""
+                    }
+                  })
+
+
+                 ,
+                  "BXD" #BXD
+                  =
+                  sapply(d,function(X){
+                    
+                    if ( X >= 80 ) {
+                      "Client’s responses indicate considerable externalizing, acting-out behavior that is very likely to result in marked dysfunction and to have gotten him or her into difficulties."
+                    } else if ( X >= 65 ) {
+                      "Client’s responses indicate significant externalizing, acting-out behavior, which is likely to have gotten him or her into difficulties."
+                    } else if ( X >= 39 ) { "" }
+                    else {
+                      "Client’s responses indicate a higher-than-average level of behavioral constraint; he or she is unlikely to engage in externalizing, acting-out behavior."
+                    } })
+
+                 ,
                   "RCd"
                   =
                   sapply(d,function(X){
@@ -186,9 +248,8 @@ res <- sapply(
                       "Client reports a sense of physical well-being."
                     }
                   })
-
-
                  ,
+                  
                   "RC2"
                   =
                   sapply(d,function(X){
@@ -202,9 +263,49 @@ res <- sapply(
                       "Client reports better-than average level of emotional adjustment."
                     }
                   })
-
-
                  ,
+
+
+                  "RC3"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports having cynical beliefs about others, being distrustful of others, and believing others look out only for their own interests."
+                    } else if ( X >= 40 ) {
+                      ""
+                    } else {
+                      "Client describes others as well intentioned and trustworthy and disavows cynical beliefs about them."
+                    }
+                  })
+                 ,
+
+
+                  "RC4"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports a significant history of past antisocial behavior."
+                    } else if ( X >= 40 ) {
+                      ""
+                    } else {
+                      "Client reports a below-average level of past antisocial behavior."
+                    }
+                  })
+                 ,
+
+                  "RC6"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "At this level, the persecutory thinking likely rises to the level of paranoid delusions."
+                    } else if ( X >= 65 ) {
+                      "Client’s responses suggest significant persecutory ideation, such as believing that others are seeking to harm him or her."
+                    } else {
+                      ""
+                    }
+                  })
+                 ,
+                  
                   "RC7"
                   =
                   sapply(d,function(X){
@@ -216,8 +317,8 @@ res <- sapply(
                       "Client reports a below-average level of negative emotional experience. "
                     }
                   })
-
                  ,
+                  
                   "RC8"
                   =
                   sapply(d,function(X){
@@ -229,8 +330,26 @@ res <- sapply(
                       ""
                     }
                   })
-
                  ,
+
+
+                  "RC9"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 75 ) {
+                      "Client reports a considerably above-average level of activation and engagement with his or her environment."
+                    } else if ( X >= 65 ) {
+                      "Client reports an above-average level of activation and engagement with his or her environment."
+                    } else if ( X >= 39 ) {
+                      ""
+                    } else {
+                      "Client reports a below-average level of activation and engagement with his or her environment."
+                    }
+                  })
+                 ,
+
+
+                  
                   "SUI"
                   =
                   sapply(d,function(X){
@@ -255,26 +374,39 @@ res <- sapply(
                       ""
                     }
                   })
-
-
                  ,
-                  "STR"
+
+                  "NFC"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "Client reports being very indecisive and inefficacious, believing he or she is incapable of making decisions and dealing effectively with crises, and/or having difficulties dealing with small, inconsequential matters."
+                    } else if ( X >= 65 ) {
+                      "Client reports being passive, indecisive, and inefficacious and believing he or she is incapable of coping with current difficulties."
+                    } else if ( X > 39 ) {
+                      ""
+                    } else {
+                      "Client did not endorse items on indecisiveness and ineffectualness."
+                    }
+                  })
+                 ,
+                  
+                  "STW"
                   =
                   sapply(d,function(X){
                     if ( X >= 80 ) {
                       "worry, including preoccupation with disappointments, difficulties with time pressure, and specific worries about misfortune and finances."
                     } else if ( X >= 65 ) {
                       "Client reports an above-average level of stress and worry."
-                    } else if ( X < 39 ) {
-                      "Client reports a below-average level of stress and worry."
-                    } else {
+                    } else if ( X > 39 ) {
                       ""
+                    } else {
+                      "Client reports a below-average level of stress and worry."
                     }
                   })
-
-                  
                  ,
-                  "ANGST"
+                  
+                  "AXY"
                   =
                   sapply(d,function(X){
                     if ( X >= 100 ) {
@@ -287,7 +419,7 @@ res <- sapply(
                   })
 
                  ,
-                  "AERG"
+                  "ANP"
                   =
                   sapply(d,function(X){
                     if ( X == 80 ) {
@@ -300,7 +432,7 @@ res <- sapply(
                   })
                   
                  ,
-                  "VEP"
+                  "BRF"
                   =
                   sapply(d,function(X){
                     if ( X >= 90 ) {
@@ -357,9 +489,8 @@ res <- sapply(
                       "Client reports a below-average level of energy and activation."
                     }
                   })
-
-
                  ,
+                  
                   "FML"
                   =
                   sapply(d,function(X){
@@ -373,9 +504,9 @@ res <- sapply(
                       "Client reports a relatively conflict-free past and current family environment."
                     }
                   })
-
-
                  ,
+
+                  
                   "IPP"
                   =
                   sapply(d,function(X){
@@ -389,9 +520,39 @@ res <- sapply(
                       "Client describes himself or herself as having strong opinions, standing up for himself or herself, being assertive and direct, and/or being able to lead others."
                     }
                   })
-
-
                  ,
+
+
+                  "SMV"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 80 ) {
+                      "Client reports not enjoying social events and avoiding social situations, including parties and other events where crowds are likely to gather."
+                    } else if ( X >= 65) {
+                      "Client reports not enjoying social events and avoiding social situations."
+                    } else if (X >= 39)  {
+                      ""
+                    } else {
+                      "Client reports enjoying social situations and events."
+                    }
+                    
+                  })
+                 ,
+
+                  "SHY"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports being shy, easily embarrassed, and uncomfortable around others."
+                    } else if ( X >= 39) {
+                      ""
+                    } else {
+                      "Client reports little or no social anxiety."
+                    } 
+                  })
+                 ,
+
+                  
                   "MIS"
                   =
                   sapply(d,function(X){
@@ -445,9 +606,21 @@ res <- sapply(
                       "Client reports overly constrained behavior."
                     }
                   })
-
-                  
                  ,
+
+                  "NEGE-r"
+                  =
+                  sapply(d,function(X){
+                    if ( X >= 65 ) {
+                      "Client reports various negative emotional experiences."
+                    } else if ( X >= 39) {
+                      ""
+                    } else {
+                      "Client reports a below-average level of negative emotional experiences."
+                    }
+                  })
+                 ,
+
                   "INTR-r"
                   =
                   sapply(d,function(X){
@@ -470,9 +643,11 @@ res <- sapply(
 
 )
 
-mmpi.dims.active <- which(sapply(res,is.null))
+mmpi.dims.active <- mmpi.dims[-which(sapply(res,is.null))]
 
+print("MMPI")
 print(mmpi.dims.active)
+print(mmpi[mmpi.dims])
 
 df <- data.frame(
   matrix(unlist(res),
@@ -480,10 +655,12 @@ df <- data.frame(
   stringsAsFactors=FALSE)
 
 if ( terse ) {
-  colnames(df) <- mmpi.dims[-mmpi.dims.active]
+  colnames(df) <- mmpi.dims.active
 } else {
   colnames(df) <- mmpi.dims
 }
+
+
 
 names <- df[["Name"]]
 
