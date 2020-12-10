@@ -152,7 +152,7 @@ res <- sapply(
                       "The protocol may be invalid. Underreporting is indicated by the test taker presenting himself or herself in an extremely positive light by denying minor faults and shortcomings that most people acknowledge."
                     } else if ( X >= 70 ) {
                       "Possible underreporting is indicated by the test taker presenting himself or herself in a very positive light by denying several minor faults and shortcomings that most people acknowledge."
-                    } else if ( X >= 60 ) {
+                    } else if ( X >= 65 ) {
                       "Possible underreporting is indicated by the test taker presenting himself or herself in a positive light by denying some minor faults that and shortcomings that most people acknowledge."
                     } else {
                       ifelse(terse,"", "There is no evidence of underreporting.")
