@@ -21,8 +21,6 @@ mmpi <- rename_all(mmpi,list(~str_replace(.,"AERG","ANP")))
 mmpi <- rename_all(mmpi,list(~str_replace(.,"VEP","BRF")))
 mmpi <- rename_all(mmpi,list(~str_replace(.,"MSP","MSF")))
 
-print("MMPI")
-print(mmpi)
 
 terse <- input$terse
 
@@ -645,26 +643,37 @@ res <- sapply(
 
 mmpi.dims.active <- mmpi.dims[-which(sapply(res,is.null))]
 
-print("MMPI")
-print(mmpi.dims.active)
-print(mmpi[mmpi.dims])
-
 df <- data.frame(
   matrix(unlist(res),
          ncol=length(unlist(res))/nrow(mmpi)),
   stringsAsFactors=FALSE)
 
+
+
 if ( terse ) {
   colnames(df) <- mmpi.dims.active
+  scores <- mmpi[mmpi.dims.active]
+  df <- rbind(df,scores)
 } else {
   colnames(df) <- mmpi.dims
+  scores <- mmpi[mmpi.dims]
+  df <- rbind(df,scores)
 }
-
 
 
 names <- df[["Name"]]
 
-res <- t(df[-1])
-colnames(res) <- names
 
+
+                                        # res <- t(df[-1])
+
+res <- t(df[-1])
+
+colnames(res) <- c(names[[1]],"scores")
+
+
+print(">")
+print(names)
+print(head(res))
+print("<")
 
