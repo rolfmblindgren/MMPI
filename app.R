@@ -44,7 +44,7 @@ server <- function(input, output) {
       paste("data-", Sys.Date(), ".txt", sep = "")
     },
     content = function(file) {
-
+      
       source("process.R",local=TRUE)
 
       print(xtable(res,align=c("l","p{4cm}","p{4cm}")),comment=FALSE,booktabs=TRUE,floating=FALSE,file=file)
@@ -53,18 +53,18 @@ server <- function(input, output) {
   
   output$terse <- renderText({ input$terse })
 
-#  output$downloadData <-  downloadHandler(
-#    filename <- function() {
-#      paste("data-", Sys.Date(), ".docx", sep="")
-#    },
-#    content = function(file) {
-#      "<p>Hei</p>"
-#    }
-#  )
+                                        #  output$downloadData <-  downloadHandler(
+                                        #    filename <- function() {
+                                        #      paste("data-", Sys.Date(), ".docx", sep="")
+                                        #    },
+                                        #    content = function(file) {
+                                        #      "<p>Hei</p>"
+                                        #    }
+                                        #  )
 
   output$table <- DT::renderDataTable({
     if ( is.character(input$file1$datapath)
-                      && file_ext(input$file1$datapath)=="csv") {
+        && file_ext(input$file1$datapath)=="csv") {
 
       source("process.R",local=TRUE)
       
